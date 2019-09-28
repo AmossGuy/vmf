@@ -19,7 +19,7 @@ def export_entity(entity):
     return VmfClass("world" if entity.classname == "worldspawn" else "entity", [
         ["classname", entity.classname],
         ["origin", export_vector3(entity.origin)],
-    ] + entity.keyvalues, [VmfClass("connections", entity.outputs)] + [export_solid(solid) for solid in entity.solids])
+    ] + entity.keyvalues, [VmfClass("connections", [export_ouput(o) for o in entity.outputs])] + [export_solid(solid) for solid in entity.solids])
 def export_solid(solid):
     return VmfClass("solid", [], [export_side(side) for side in solid])
 def export_side(brushface):
