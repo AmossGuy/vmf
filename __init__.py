@@ -29,7 +29,9 @@ class Vector3(namedtuple("Vector3", ["x", "y", "z"])):
     def dot(self, other):
         return sum([s * o for s, o in zip(self, other)])
     def cross(self, other):
-        return type(self)(self.y * other.z - self.z * other.y, self.z * other.x - self.x * other.z, self.x * other.y - self.y * other.x)
+        return type(self)(self.y * other.z - self.z * other.y,
+                          self.z * other.x - self.x * other.z,
+                          self.x * other.y - self.y * other.x)
     def length(self):
         return sqrt(self.dot(self))
     def normalize(self):
@@ -74,8 +76,3 @@ class Entity(namedtuple("Entity", ["classname", "origin", "keyvalues", "outputs"
 
 class Output(namedtuple("Output", ["myoutput", "target", "theirinput", "parameter", "delay", "repeats"])):
     pass
-
-if __name__ == "__main__":
-    p1, p2, p3 = Vector3(-55.4256, -32, 90.5097), Vector3(55.4256, 32, 90.5097), Vector3(100.68, -46.3837, 0)
-    face = BrushFace(p1, p2, p3)
-    print(face.uaxis, face.vaxis)
