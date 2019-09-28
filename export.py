@@ -34,6 +34,6 @@ def export_side(brushface):
 def export_vector3(vector3):
     return "{} {} {}".format(vector3.x, vector3.y, vector3.z)
 def export_uvaxis(uvaxis):
-    return "[{} {} {} {}] {}".format(uvaxis.normal.x, uvaxis.normal.y, uvaxis.normal.y, uvaxis.offset, uvaxis.scale)
+    return "[{} {} {} {}] {}".format(uvaxis.normal.x, uvaxis.normal.y, uvaxis.normal.z, uvaxis.offset, uvaxis.scale)
 def export_output(output):
     return [output.myoutput, "{},{},{},{},{}".format(output.target, output.theirinput, output.parameter, output.delay, output.repeats)]
