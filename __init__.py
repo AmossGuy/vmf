@@ -1,7 +1,7 @@
 from collections import namedtuple
 from math import sqrt
 
-def make_cube(x, y, z, width, depth, height, material="dev/dev_measuregeneric01b", facealign=False):
+def make_cuboid(x, y, z, width, depth, height, material="dev/dev_measuregeneric01b", facealign=False):
     corner, w_edge, d_edge, h_edge = Vector3(x, y, z), Vector3(width, 0, 0), Vector3(0, depth, 0), Vector3(0, 0, height)
     planes = [
         BrushFace(corner + d_edge + h_edge, corner + w_edge + d_edge + h_edge, corner + w_edge + h_edge, material, facealign),
