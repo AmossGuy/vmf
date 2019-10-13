@@ -41,7 +41,7 @@ class Vector3(namedtuple("Vector3", ["x", "y", "z"])):
     def closestaxis(self):
         # Priority X > Y > Z
         t = abs(self)
-        if t.x >= t.y and t.x >= t.z: return type(self)(1, 0, 0)
+        if t.x >= t.y >= t.z: return type(self)(1, 0, 0)
         if t.y >= t.z: return type(self)(0, 1, 0)
         return type(self)(0, 0, 1)
 
