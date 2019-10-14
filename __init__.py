@@ -52,8 +52,6 @@ def getnormalalign(normal):
     vector = Vector3(0, -1, 0) if normal.closestaxis() == Vector3(0, 0, 1) else Vector3(0, 0, -1) # This is basically asking whether this is a floor/ceiling or a wall
     uaxis = normal.cross(vector).normalize()
     vaxis = uaxis.cross(normal).normalize() # The Y axis of the texture is 90° away from the X axis
-    if normal.closestaxis() == Vector3(0, 1, 0):
-        uaxis = -uaxis
     return (UvAxis(uaxis, 0, 0.25), UvAxis(vaxis, 0, 0.25))
 
 class BrushFace:
@@ -69,7 +67,10 @@ class BrushFace:
     def getnormal(self):
         return (self.point1 - self.point2).cross(self.point3 - self.point2).normalize()
     def getworldalign(self):
-        return getnormalalign(self.getnormal().closestaxis())
+        uaxis, vaxis = getnormalalign(self.getnormal().closestaxis())
+        if self.getnormal().closestaxis() == Vector3(0, 1, 0):
+            uaxis = UvAxis(-uaxis.normal, uaxis.offset, uaxis.scale)
+        return uaxis, vaxis
     def getfacealign(self):
         return getnormalalign(self.getnormal())
 
